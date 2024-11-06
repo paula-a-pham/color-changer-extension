@@ -19,6 +19,26 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             alert('Error sending message to content please try again');
             return;
           }
+
+          if (!response) {
+            console.error('No response received from the content file.');
+            alert('No response received from the content file.');
+            return;
+          }
+
+          if (response.status) {
+            sendResponse({
+              status: true,
+            });
+          } else {
+            console.error(response.errorMessage);
+
+            sendResponse({
+              status: false,
+              errorMessage: response.errorMessage,
+            });
+            return;
+          }
         }
       );
     } catch (error) {
