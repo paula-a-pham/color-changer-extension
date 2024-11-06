@@ -9,5 +9,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'color-changer';
 
-  changeColor(): void {}
+  changeColor(): void {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (chrome.runtime.lastError) {
+        console.error('Error querying tabs: ', chrome.runtime.lastError);
+        alert('Error querying tabs');
+        return;
+      }
+
+      const currentTab = tabs[0].id;
+    });
+  }
 }
