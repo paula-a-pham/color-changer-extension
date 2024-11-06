@@ -18,6 +18,20 @@ export class AppComponent {
       }
 
       const currentTab = tabs[0].id;
+
+      chrome.runtime.sendMessage(
+        { action: 'COLOR_CHANGE_REQUEST', tabId: currentTab },
+        (response) => {
+          if (chrome.runtime.lastError) {
+            console.error(
+              'Error sending message to background : ',
+              chrome.runtime.lastError
+            );
+            alert('Error sending message to background please try again');
+            return;
+          }
+        }
+      );
     });
   }
 }
