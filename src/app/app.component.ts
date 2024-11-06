@@ -30,6 +30,20 @@ export class AppComponent {
             alert('Error sending message to background please try again');
             return;
           }
+
+          if (!response) {
+            console.error('No response received from the background file.');
+            alert('No response received from the background file.');
+            return;
+          }
+
+          if (response.status) {
+            alert('Color changed successfully.');
+          } else {
+            console.error(response.errorMessage);
+            alert(response.errorMessage);
+            return;
+          }
         }
       );
     });
