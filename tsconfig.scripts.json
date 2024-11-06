@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/color-changer/browser",
+    "target": "ES5",
+    "module": "commonjs"
+  },
+  "include": ["src/extension/**/*"]
+}
